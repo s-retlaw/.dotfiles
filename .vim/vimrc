@@ -94,6 +94,8 @@ Plug 'beloglazov/vim-textobj-quotes'
 " Plug 'christoomey/vim-textobj-codeblock'
 Plug '~/code/vim/textobj-codeblock'
 
+Plug 'rust-lang/rust.vim'
+
 call plug#end()
 
 " vim:ft=vim
