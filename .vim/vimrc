@@ -76,8 +76,6 @@ nnoremap \<space> :Git<cr>:wincmd _<cr>
 nnoremap \gr :Grebase -i master<cr>
 
 Plug 'morhetz/gruvbox'
-color gruvbox
-set background=dark
 
 Plug 'scrooloose/nerdtree'
 
@@ -97,5 +95,9 @@ Plug '~/code/vim/textobj-codeblock'
 Plug 'rust-lang/rust.vim'
 
 call plug#end()
+
+" Post plugin setup
+color gruvbox
+set background=dark
 
 " vim:ft=vim

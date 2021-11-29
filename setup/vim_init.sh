@@ -1,5 +1,7 @@
-mv ~/.vim ~/.vim_bak
+if [ -d "~/.vim" ]; then
+    mv ~/.vim ~/.vim_bak
+fi
 
-ln -s ~/.vim ~/dotfiles/.vim
+ln -s ~/dotfiles/.vim ~/.vim    
 
 
