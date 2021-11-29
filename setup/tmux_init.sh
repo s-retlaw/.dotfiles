@@ -1,8 +1,13 @@
-mv ~/.tmux_conf ~/.tmux_conf_bak 
-mv ~/.tmux ~/.tmux_bak
+if [ -d "~/.tmux_conf" ]; then
+    mv ~/.tmux_conf ~/.tmux_conf_bak
+fi
 
-ln -s ~/.tmux_conf ~/dotfiles/.tmux_conf
-ln -s ~/.tmux ~/dotfiles/.tmux 
+if [ -d "~./tmux"]; then
+    mv ~/.tmux ~/.tmux_bak
+fi
+
+ln -s ~/dotfiles/.tmux_conf ~/.tmux_conf
+ln -s ~/dotfiles/.tmux ~/.tmux
 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
