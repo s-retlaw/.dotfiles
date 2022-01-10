@@ -6,8 +6,8 @@ if [ -d "~./tmux"]; then
     mv ~/.tmux ~/.tmux_bak
 fi
 
-ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
-ln -s ~/dotfiles/.tmux ~/.tmux
+ln -s ~/.dotfiles/.tmux.conf ~/.tmux.conf
+ln -s ~/.dotfiles/.tmux ~/.tmux
 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
