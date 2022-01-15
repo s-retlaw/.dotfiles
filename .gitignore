@@ -1,3 +1,5 @@
 vim/bundle/**
 .vim/plugins/**
+.config/nvim/plugins/**
+.tmux/plugins/**
 
