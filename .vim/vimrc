@@ -81,7 +81,6 @@ Plug 'scrooloose/nerdtree'
 
 " Surround - Mappings for adding, removing, and changing surrounding characters
 Plug 'tpope/vim-surround'
-let g:surround_99 = "```\r```"
 
 " TextObj - Custom text objects for the line, indent level, entier file, etc
 Plug 'kana/vim-textobj-user'
@@ -89,47 +88,17 @@ Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-entire'
 Plug 'beloglazov/vim-textobj-quotes'
-" Plug 'christoomey/vim-textobj-codeblock'
-Plug '~/code/vim/textobj-codeblock'
-Plug 'dense-analysis/ale'
-Plug 'vim-syntastic/syntastic'
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-easytags'
-Plug 'preservim/tagbar'
-Plug 'rust-lang/rust.vim'
+Plug 'christoomey/vim-textobj-codeblock'
 call plug#end()
 
 " Post plugin setup
+" *****************
+" gruvbox
 color gruvbox
 set background=dark
 
-"  -- Ale Setup
-let g:ale_linters = {
-\  'rust' : ['rls', 'analyzer']
-\}
-
-let g:ale_fixers = {
-\ 'rust' : ['rustfmt']
-\}
-
-let g:rustfmt_autosave = 1
-
-"  -- Syntastic Setup
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-"  -- tagbar setup
-nmap <F8> :TagbarToggle<CR>
-
-" -- EasyTags setup
-" Note first we did :  sudo apt-get install exuberant-ctags
-let g:easytags_async = 1
-
+" vim surround
+let g:surround_99 = "```\r```"
+" *****************
 
 " vim:ft=vim
