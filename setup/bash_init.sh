@@ -1,0 +1,2 @@
+cat ~/.dotfiles/.bashrc >> ~/.bashrc
+

@@ -97,6 +97,9 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
 Plug 'preservim/tagbar'
 Plug 'rust-lang/rust.vim'
+Plug 'wellle/targets.vim'
+Plug 'github/copilot.vim'
+
 call plug#end()
 
 " Post plugin setup

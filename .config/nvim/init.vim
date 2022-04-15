@@ -103,6 +103,8 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'rust-lang/rust.vim'
 Plug 'simrat39/rust-tools.nvim'
 Plug 'hrsh7th/nvim-cmp'
+Plug 'github/copilot.vim'
+Plug 'wellle/targets.vim'
 call plug#end()
 
 " Post plugin setup

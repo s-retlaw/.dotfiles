@@ -25,7 +25,7 @@ set shiftround
 set expandtab
 
 " Display extra whitespace
-set list listchars=tab:»·,trail:·,nbsp:·
+silent! set list listchars=tab:»·,trail:·,nbsp:·
 
 " Use one space, not two, after punctuation.
 set nojoinspaces
@@ -49,7 +49,7 @@ set complete+=kspell
 set splitright
 
 
-let mapleader=","
+let mapleader=" "
 
 " Base64 decode word under cursor
 nmap <Leader>b :!echo <C-R><C-W> \| base64 -d<CR>
@@ -94,7 +94,7 @@ call plug#end()
 " Post plugin setup
 " *****************
 " gruvbox
-color gruvbox
+silent! color gruvbox
 set background=dark
 
 " vim surround
