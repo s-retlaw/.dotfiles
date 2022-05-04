@@ -123,18 +123,21 @@ set background=dark
 " -- Setup LSP
 lua <<EOF
 require("nvim-lsp-installer").setup({
-    ensure_installed = {  "jdtls", 
-                          "sumneko_lua", 
+    ensure_installed = {  
                           "ansiblels",  
                           "dockerls",
                           "html",
+                          "jdtls", -- java
                           "jsonls",
-                          "tsserver", -- js
+                          "lemminx", -- xml
+                          "pyright", -- python
                           "remark_ls", -- note there are several for MD
+                          "rust_analyzer",
+                          "spectral", --open api
+                          "sumneko_lua",
                           "terraformls", 
-                          "lemminx",
+                          "tsserver", -- js
                           "yamlls",
-                          -- could have added pyright and rust_analyzer
                         }, -- ensure these servers are always installed
     automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
     ui = {
@@ -277,20 +280,22 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 
-                  'rust_analyzer', 
-                  "jdtls", 
-                  "sumneko_lua", 
-                  "ansiblels",  
-                  "dockerls",
-                  "html",
-                  "jsonls",
-                  "tsserver", -- js
-                  "remark_ls", -- note there are several for MD
-                  "terraformls", 
-                  "lemminx",
-                  "yamlls"
-                }
+local servers = { 
+  "ansiblels",  
+  "dockerls",
+  "html",
+  "jdtls", -- java
+  "jsonls",
+  "lemminx", -- xml
+  "pyright", -- python
+  "remark_ls", -- note there are several for MD
+  "rust_analyzer",
+  "spectral", --open api
+  "sumneko_lua",
+  "terraformls", 
+  "tsserver", -- js
+  "yamlls",
+  }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
