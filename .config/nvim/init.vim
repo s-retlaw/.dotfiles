@@ -107,8 +107,8 @@ Plug 'github/copilot.vim'
 Plug 'wellle/targets.vim'
 
 " LSP client and AutoInstaller
-Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
+Plug 'neovim/nvim-lspconfig'
 Plug 'mfussenegger/nvim-jdtls'
 
 " Treesitter
@@ -121,6 +121,32 @@ color gruvbox
 set background=dark
 
 " -- Setup LSP
+lua <<EOF
+require("nvim-lsp-installer").setup({
+    ensure_installed = {  "jdtls", 
+                          "sumneko_lua", 
+                          "ansiblels",  
+                          "dockerls",
+                          "html",
+                          "jsonls",
+                          "tsserver", -- js
+                          "remark_ls", -- note there are several for MD
+                          "terraformls", 
+                          "lemminx",
+                          "yamlls",
+                          -- could have added pyright and rust_analyzer
+                        }, -- ensure these servers are always installed
+    automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
+    ui = {
+        icons = {
+            server_installed = "✓",
+            server_pending = "➜",
+            server_uninstalled = "✗"
+        }
+    }
+})
+EOF
+
 " require'lspconfig'.rust_analyzer.setup{}
 " require'lspconfig'.pylsp.setup{}
 
@@ -251,7 +277,20 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 'rust_analyzer', 'jdtls', 'tsserver'}
+local servers = { 'pyright', 
+                  'rust_analyzer', 
+                  "jdtls", 
+                  "sumneko_lua", 
+                  "ansiblels",  
+                  "dockerls",
+                  "html",
+                  "jsonls",
+                  "tsserver", -- js
+                  "remark_ls", -- note there are several for MD
+                  "terraformls", 
+                  "lemminx",
+                  "yamlls"
+                }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
