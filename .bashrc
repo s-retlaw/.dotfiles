@@ -41,4 +41,5 @@ export PATH=${PATH}:~/bin:~/.local/bin:~/.local/scripts
 # I'd quite like for Go to work please.
 export PATH=${PATH}:/usr/local/go/bin
 export GOPATH=~
+alias ungron="gron --ungron"
 
