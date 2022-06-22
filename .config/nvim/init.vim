@@ -42,7 +42,7 @@ set nojoinspaces
 " Display relative line numbers, with absolute line number for current line
 set number
 set numberwidth=5
-set relativenumber
+"set relativenumber
 
 " When the type of shell script is /bin/sh, assume a POSIX-compatible
 " shell for syntax highlighting purposes.
@@ -58,7 +58,7 @@ set complete+=kspell
 set splitright
 
 
-let mapleader=","
+let mapleader=" "
 
 " Base64 decode word under cursor
 nmap <Leader>b :!echo <C-R><C-W> \| base64 -d<CR>
@@ -90,7 +90,6 @@ Plug 'scrooloose/nerdtree'
 
 " Surround - Mappings for adding, removing, and changing surrounding characters
 Plug 'tpope/vim-surround'
-let g:surround_99 = "```\r```"
 
 " TextObj - Custom text objects for the line, indent level, entier file, etc
 Plug 'kana/vim-textobj-user'
@@ -99,10 +98,14 @@ Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-entire'
 Plug 'beloglazov/vim-textobj-quotes'
 Plug 'christoomey/vim-textobj-codeblock'
-Plug 'neovim/nvim-lspconfig'
+
+" rust items
 Plug 'rust-lang/rust.vim'
 Plug 'simrat39/rust-tools.nvim'
+
 Plug 'github/copilot.vim'
+
+" used to select objects, i.e text objects
 Plug 'wellle/targets.vim'
 
 " nvim-cmp items
@@ -122,12 +125,34 @@ Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/nvim-treesitter-refactor'
 
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Telesecope setup
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+"Install Vimspector
+Plug 'puremourning/vimspector'
+
+"comments
+Plug 'numToStr/Comment.nvim'
+Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 
 call plug#end()
 
 " Post plugin setup
 color gruvbox
 set background=dark
+
+" vim surround
+let g:surround_99 = "```\r```"
+
+:map <C-n> :NERDTreeToggle<CR>
+
+" --setup telescope
+"  " Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " -- Setup TreeSitter
 lua <<EOF
@@ -139,6 +164,11 @@ configs.setup {
   },
   indent = {
     enable = true, 
+  },
+-- used to setup numToStr/Comment.nvim
+  context_commentstring = {
+    enable = true,
+    enable_autocmd = false,
   }
 }
 EOF
@@ -161,7 +191,7 @@ require("nvim-lsp-installer").setup({
                           "terraformls", 
                           "tsserver", -- js
                           "yamlls",
-                          "zeta_note", -- note there are several for MD
+--                          "zeta_note", -- note there are several for MD
                         }, -- ensure these servers are always installed
     automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
     ui = {
@@ -391,7 +421,7 @@ local servers = {
   "terraformls", 
   "tsserver", -- js
   "yamlls",
-  "zeta_note", -- note there are several for MD
+ -- "zeta_note", -- note there are several for MD
   }
 for _, lsp in ipairs(servers) do
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -401,7 +431,50 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities
   }
 end
+EOF
+""""""""""""""""""
+" VIMSPECTOR SETUP
+""""""""""""""""""
 
-nvim_lsp["zeta_note"].setup{cmd= { "zeta-note" }}
+"    Key Mapping Function
+"    F5  <Plug>VimspectorContinue  When debugging, continue. Otherwise start debugging.
+"    Shift F5  <Plug>VimspectorStop  Stop debugging.
+"    Ctrl Shift F5 <Plug>VimspectorRestart Restart debugging with the same configuration.
+"    F6  <Plug>VimspectorPause Pause debuggee.
+"    F9  <Plug>VimspectorToggleBreakpoint  Toggle line breakpoint on the current line.
+"    Shift F9  <Plug>VimspectorAddFunctionBreakpoint Add a function breakpoint for the expression under cursor
+"    F10 <Plug>VimspectorStepOver  Step Over
+"    F11 <Plug>VimspectorStepInto  Step Into
+"    Shift F11 <Plug>VimspectorStepOut Step out of current function scope
 
+let g:vimspector_base_dir='~/.config/nvim/plugins/vimspector'
+let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
+
+" mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)
+" for normal mode - the word under the cursor
+nmap <Leader>di <Plug>VimspectorBalloonEval
+" for visual mode, the visually selected text
+xmap <Leader>di <Plug>VimspectorBalloonEval
+"packadd! vimspector
+":Vimspector_install --all
+
+" setup nomToStr/Comment
+lua << EOF
+require('Comment').setup { 
+  pre_hook = function(ctx)
+  local U = require 'Comment.utils'
+
+  local location = nil
+  if ctx.ctype == U.ctype.block then
+    location = require('ts_context_commentstring.utils').get_cursor_location()
+  elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
+    location = require('ts_context_commentstring.utils').get_visual_start_location()
+  end
+
+  return require('ts_context_commentstring.internal').calculate_commentstring {
+    key = ctx.ctype == U.ctype.line and '__default' or '__multiline',
+    location = location,
+    }
+  end, 
+  }
 EOF
