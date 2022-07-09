@@ -1,4 +1,5 @@
 require("which-key").setup({
+  registers = false,
   window = {
     border = "rounded", -- none, single, double, shadow
     position = "bottom", -- bottom, top
