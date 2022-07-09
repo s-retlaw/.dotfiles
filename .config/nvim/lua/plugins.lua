@@ -42,6 +42,7 @@ Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 -- LSP client and AutoInstaller
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'neovim/nvim-lspconfig'
+Plug 'simrat39/rust-tools.nvim'
 
 -- nvim-cmp items
 Plug 'hrsh7th/nvim-cmp'
@@ -66,6 +67,7 @@ require "setup.comment"
 require "setup.treesitter"
 require "setup.lsp-installer"
 require "setup.lspconfig"
+require "setup.rust-tools"
 require "setup.cmp"
 require "setup.rest"
 

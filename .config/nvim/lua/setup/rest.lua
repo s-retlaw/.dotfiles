@@ -27,4 +27,4 @@ require("rest-nvim").setup({
   -- Shorten function name
   local keymap = vim.api.nvim_set_keymap
   local opts = { noremap = true, silent = true }
-  keymap("n", "<space>r", "<cmd><Plug>RestNvim<cr>", opts)
+  keymap("n", "<space>r", "<Plug>RestNvim", opts)
