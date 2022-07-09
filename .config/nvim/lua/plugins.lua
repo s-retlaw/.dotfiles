@@ -3,7 +3,7 @@ vim.cmd('source ~/.config/nvim/autoload/plug.vim')
 
 local Plug = vim.fn['plug#']
 
-vim.call('plug#begin', '~/.config/nvim/plugged')
+vim.call('plug#begin', '~/.config/nvim/plugins')
 
 Plug 'nvim-lua/plenary.nvim' -- useful lua functions used by severla plugins
 
