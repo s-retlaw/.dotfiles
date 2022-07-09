@@ -29,4 +29,16 @@ cmp.setup({
     { name = 'path' },
     { name = 'buffer' },
   },
+
+  window = {
+    completion = {  -- no border; native-style scrollbar 
+      border = nil,
+      scrollbar = '',
+    },
+    documentation = { -- rounded border; thin-style scrollbar 
+      border = 'rounded',
+      scrollbar = '║',
+      -- other options
+    },
+  },
 })
