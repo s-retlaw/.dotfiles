@@ -1,0 +1,106 @@
+local fn = vim.fn
+
+print("we are in plugins")
+
+-- Automatically install packer
+local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
+if fn.empty(fn.glob(install_path)) > 0 then
+  PACKER_BOOTSTRAP = fn.system {
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://github.com/wbthomason/packer.nvim",
+    install_path,
+  }
+  print "Installing packer close and reopen Neovim..."
+  vim.cmd [[packadd packer.nvim]]
+end
+
+-- Autocommand that reloads neovim whenever you save the plugins.lua fi     le
+vim.cmd [[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+  augroup end
+]]
+
+-- Use a protected call so we don't error out on first use
+local status_ok, packer = pcall(require, "packer")
+if not status_ok then
+  print("Packer notloaded!!!!!")
+  return
+end
+
+-- Have packer use a popup window
+packer.init {
+  display = {
+    open_fn = function()
+      return require("packer.util").float { border = "rounded" }
+    end,
+  },
+}
+
+
+-- Install your plugins here
+return packer.startup(function(use)
+-- My plugins here
+  use "wbthomason/packer.nvim" -- Have packer manage itself
+  use "nvim-lua/plenary.nvim"  -- Useful lua functions ued by lots of plugins
+
+-- Colorschemes
+--  use "folke/tokyonight.nvim"
+  use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
+  use ({
+    "lunarvim/darkplus.nvim",
+    config = require("setup.colorscheme"),
+  })
+
+  use({
+    "scrooloose/nerdtree",
+    config = require("setup.nerdtree"),
+  })
+
+  -- Surround
+  use 'tpope/vim-surround'
+  -- Repeat
+  use 'tpope/vim-repeat'
+  
+ 
+  -- vim-surround/sandwich, lua version
+  -- mini also has an indent highlighter
+--  use { 'echasnovski/mini.nvim',
+--    config = require"setup.mini_surround",
+--    event = "VimEnter",
+--  }
+
+-- -- --   use({
+-- -- --     "tpope/vim-surround",
+-- -- --     config = require("setup.surround"),
+-- -- --     as = "surround",
+-- -- --   })
+  -- Surround - Mappings for adding, removing, and changing surrounding characters
+-- -- --  use {
+-- -- --    "ur4ltz/surround.nvim",
+-- -- --    config = function()
+-- -- --      require"surround".setup {mappings_style = "sandwich"}
+-- -- --    end
+-- -- --  }
+
+--    
+--      -- TextObj - Custom text objects for the line, indent level, entier file     , etc
+--      use "kana/vim-textobj-user"
+--      use "kana/vim-textobj-line"
+--      use "kana/vim-textobj-indent"
+--      use "kana/vim-textobj-entire"
+--      use "beloglazov/vim-textobj-quotes"
+--      use "christoomey/vim-textobj-codeblock"
+
+
+--
+--  Automatically set up your configuration after cloning packer.nvim
+-- Put this at the end after all plugins
+  if PACKER_BOOTSTRAP then
+    require("packer").sync()
+  end
+end)
