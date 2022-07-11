@@ -33,7 +33,7 @@ set nojoinspaces
 " Display relative line numbers, with absolute line number for current line
 set number
 set numberwidth=5
-set relativenumber
+" set relativenumber
 
 " When the type of shell script is /bin/sh, assume a POSIX-compatible
 " shell for syntax highlighting purposes.
@@ -71,9 +71,9 @@ set shell=/bin/bash
 call plug#begin('~/.vim/plugins')
 
 " Fugitive - Vim meets git. Gstatus, Gdiff, etc.
-Plug 'tpope/vim-fugitive'
-nnoremap \<space> :Git<cr>:wincmd _<cr>
-nnoremap \gr :Grebase -i master<cr>
+" Plug 'tpope/vim-fugitive'
+" nnoremap \<space> :Git<cr>:wincmd _<cr>
+" nnoremap \gr :Grebase -i master<cr>
 
 Plug 'morhetz/gruvbox'
 
@@ -100,5 +100,8 @@ set background=dark
 " vim surround
 let g:surround_99 = "```\r```"
 " *****************
+
+" setup nerd tree for Ctrl-N
+nmap <C-n> :NERDTreeToggle<CR>
 
 " vim:ft=vim
