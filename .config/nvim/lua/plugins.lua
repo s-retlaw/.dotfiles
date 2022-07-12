@@ -55,6 +55,20 @@ Plug 'hrsh7th/vim-vsnip'
 
 Plug "NTBBloodbath/rest.nvim"
 
+
+  -- Telescope
+Plug "nvim-telescope/telescope.nvim"
+  -- use "tom-anders/telescope-vim-bookmarks.nvim"
+Plug "nvim-telescope/telescope-media-files.nvim"
+
+  -- Git
+Plug "lewis6991/gitsigns.nvim"
+Plug "f-person/git-blame.nvim"
+-- Plug "ruifm/gitlinker.nvim"
+Plug "mattn/vim-gist"
+
+
+
 vim.call('plug#end')
 
 require "setup.colorscheme"
@@ -62,7 +76,6 @@ require "setup.nerdtree"
 require "setup.lualine"
 require "setup.registers"
 require "setup.toggleterm"
-require "setup.whichkey"
 require "setup.comment"
 require "setup.treesitter"
 require "setup.lsp-installer"
@@ -70,5 +83,14 @@ require "setup.lspconfig"
 require "setup.rust-tools"
 require "setup.cmp"
 require "setup.rest"
+
+require "setup.gist"
+require "setup.git-blame"
+require "setup.gitsigns"
+
+require "setup.telescope"
+require "setup.telescope-file-browser"
+
+require "setup.whichkey"
 
 
