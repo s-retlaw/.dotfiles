@@ -35,24 +35,24 @@ end
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local servers = { -- also see lsp-installer
-    "awk_ls", 
-    "ansiblels",
-    "bashls",
-    "ccls",
-    "dockerls",
-    "graphql",
+--    "awk_ls", 
+--    "ansiblels",
+--    "bashls",
+--    "ccls",
+--    "dockerls",
+--    "graphql",
     "html",
-    "jdtls", -- java
-    "jsonls",
-    "lemminx", -- xml
-    "omnisharp", -- c# 
+--    "jdtls", -- java
+--    "jsonls",
+--    "lemminx", -- xml
+--    "omnisharp", -- c# 
     "pyright", -- python
     "rust_analyzer",
-    "spectral", --open api
-    "sumneko_lua",
+--    "spectral", --open api
+--    "sumneko_lua",
     "taplo", -- cargo files
-    "terraformls",
-    "tsserver", -- js
+--    "terraformls",
+--    "tsserver", -- js
     "yamlls",
    }
 for _, lsp in ipairs(servers) do

@@ -1,23 +1,23 @@
 require("nvim-lsp-installer").setup({
   ensure_installed = { -- also see lspconfig
-    "awk_ls", 
-    "ansiblels",
-    "bashls",
-    "ccls",
-    "dockerls",
-    "graphql",
+--    "awk_ls", 
+--    "ansiblels",
+--    "bashls",
+--    "ccls",
+--    "dockerls",
+--    "graphql",
     "html",
-    "jdtls", -- java
-    "jsonls",
-    "lemminx", -- xml
-    "omnisharp", -- c# 
+--    "jdtls", -- java
+--    "jsonls",
+--    "lemminx", -- xml
+--    "omnisharp", -- c# 
     "pyright", -- python
     "rust_analyzer",
-    "spectral", --open api
-    "sumneko_lua",
+--    "spectral", --open api
+--    "sumneko_lua",
     "taplo", -- cargo files
-    "terraformls",
-    "tsserver", -- js
+--    "terraformls",
+--    "tsserver", -- js
     "yamlls",
     --                          "zeta_note", -- note the     re are several for MD
   }, -- ensure these servers a     re always installed
